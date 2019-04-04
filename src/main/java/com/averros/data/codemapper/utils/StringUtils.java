@@ -1,5 +1,7 @@
 package com.averros.data.codemapper.utils;
 
+import reactor.core.publisher.Flux;
+
 import java.lang.reflect.Array;
 import java.util.AbstractList;
 import java.util.ArrayList;
@@ -8,7 +10,7 @@ import java.util.List;
 public class StringUtils {
 
 
-    public static List<String> split(String string, char delimiter) {
+    public static Flux<String> split(String string, char delimiter) {
         final boolean[] escape = {false};
         final boolean[] literal = {false};
         List<String> output = new ArrayList<>();
@@ -32,7 +34,7 @@ public class StringUtils {
                     }
                 });
         output.add(sb.toString());
-        return output;
+        return Flux.fromIterable(output);
     }
 
 
