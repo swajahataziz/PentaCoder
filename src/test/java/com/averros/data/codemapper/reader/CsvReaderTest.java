@@ -6,8 +6,6 @@ import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import reactor.core.publisher.Flux;
 
-import java.io.IOException;
-import java.net.URI;
 import java.nio.file.*;
 import java.util.List;
 
