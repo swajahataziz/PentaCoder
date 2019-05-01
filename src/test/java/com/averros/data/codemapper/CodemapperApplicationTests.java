@@ -12,5 +12,4 @@ public class CodemapperApplicationTests {
     @Test
     public void contextLoads() {
     }
-
 }

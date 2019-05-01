@@ -12,7 +12,7 @@ import java.util.HashSet;
 import java.util.List;
 
 @SpringBootTest
-public class SourceCodeReaderTest {
+public class SourceCodingSystemReaderTest {
 
     @Test
     public void readVariableCsvTest() {

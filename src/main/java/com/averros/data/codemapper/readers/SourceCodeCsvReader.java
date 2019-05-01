@@ -7,9 +7,7 @@ import org.springframework.data.util.Pair;
 import org.supercsv.cellprocessor.constraint.NotNull;
 import org.supercsv.cellprocessor.constraint.StrNotNullOrEmpty;
 import org.supercsv.cellprocessor.ift.CellProcessor;
-import org.supercsv.io.CsvBeanReader;
 import org.supercsv.io.CsvMapReader;
-import org.supercsv.io.ICsvBeanReader;
 import org.supercsv.io.ICsvMapReader;
 import org.supercsv.prefs.CsvPreference;
 
@@ -38,7 +36,7 @@ public class SourceCodeCsvReader {
 
     public SourceCodeCsvReader(char delimiter, char quoteChar, String eolSymbols, String chartSet) {
         this.csvPreference = new CsvPreference.Builder(quoteChar,delimiter,eolSymbols).build();
-        this.nameMapping = new String[]{"Source Name", "Source Code", "Record Frequency", "Concept IDs", "Additional Source Info"};
+        this.nameMapping = new String[]{"Source Name", "Source CodingSystem", "Record Frequency", "OmopConcept IDs", "Additional Source Info"};
     }
 
     public List<SourceData> read(String fileName) {
@@ -77,34 +75,6 @@ public class SourceCodeCsvReader {
         sourceData.setAdditionalSourceInfo(additionalSourceInfo);
         return sourceData;
     }
-
-    /*
-    public List<SourceData> read(String fileName) {
-
-        List<SourceData> sourceCodeList = new ArrayList<>();
-        try {
-            String[] headers;
-            ICsvBeanReader beanReader = new CsvBeanReader(new FileReader(fileName), csvPreference);
-
-            //ICsvListReader listReader = new CsvListReader(new FileReader(fileName), csvPreference);
-            headers = beanReader.getHeader(true);
-            int variableColumnLength = headers.length - 4;
-            SourceData sourceData;
-            while(
-                    (sourceData =
-                            beanReader.read(SourceData.class,
-                                    headers,
-                                    buildProcessor(variableColumnLength, headers))) != null) {
-                sourceCodeList.add(sourceData);
-            }
-        } catch (FileNotFoundException e) {
-            System.out.println("SourceCodeCsvReader Could not locate file: "+ e);
-        } catch (IOException e) {
-            System.out.println("SourceCodeCsvReader failed with IOException: "+ e);
-        }
-        return sourceCodeList;
-    }
-    */
 
     private CellProcessor[] buildProcessor(int variableColumnLength, String[] headers) {
         List<CellProcessor> cellProcessorsList = new ArrayList<>();
