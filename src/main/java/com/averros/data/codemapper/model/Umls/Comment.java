@@ -9,6 +9,6 @@ public class Comment {
 
     private User author;
     private DateTime timeStamp;
-    private String cui;
+    private String conceptUniqueIdentifier;
     private String text;
 }
